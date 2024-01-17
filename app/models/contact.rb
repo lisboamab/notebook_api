@@ -12,4 +12,8 @@ class Contact < ApplicationRecord
     include: {kind: {only: :description}}
     )
   end
+
+  def kind_description
+    self.kind.description
+  end
 end
