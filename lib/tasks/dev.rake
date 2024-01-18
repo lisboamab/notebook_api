@@ -19,4 +19,13 @@ namespace :dev do
       )
     end
   end
+
+  desc "Configura o ambiente de desenvolvimento"
+  task phones_setup: :environment do
+    Contact.all.each do |contact|
+      Random.rand(5).times do |i|
+        phone = Phone.create!(number: Faker::PhoneNumber.cell_phone, contact: contact).save!
+      end
+    end
+  end
 end
