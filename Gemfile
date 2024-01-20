@@ -45,6 +45,8 @@ group :development do
   gem "faker"
 
   gem "byebug"
+
+  gem 'pry-rails'
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end

@@ -3,6 +3,8 @@ class Contact < ApplicationRecord
   belongs_to :kind
   has_many :phones
 
+  accepts_nested_attributes_for :phones
+
   def code
     "#{created_at.strftime("%Y")}#{id.to_s.rjust(4, '0')}"
   end
@@ -11,8 +13,7 @@ class Contact < ApplicationRecord
     json = super(
     root: true,
     methods: :code,
-    include: {kind: {only: :description}},
-    include: {phones: {except: :contact_id, root: true}}
+    include: {kind: {only: :description}, phones: {except: :contact_id}}
     )
     json["contact"]["birthdate"] = (I18n.l(self.birthdate) unless self.birthdate.blank?)
     json
