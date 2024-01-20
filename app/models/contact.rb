@@ -3,7 +3,7 @@ class Contact < ApplicationRecord
   belongs_to :kind
   has_many :phones
 
-  accepts_nested_attributes_for :phones
+  accepts_nested_attributes_for :phones, allow_destroy: true
 
   def code
     "#{created_at.strftime("%Y")}#{id.to_s.rjust(4, '0')}"
