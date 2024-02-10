@@ -28,4 +28,16 @@ namespace :dev do
       end
     end
   end
+
+  desc "configura ambiente"
+  task address_setup: :environment do
+    Contact.all.each_with_index do |contact, index|
+      puts "Criando endereço #{index}"
+      address = Address.create!(
+        street: Faker::Address.street_address,
+        city: Faker::Address.city,
+        contact: contact
+      ).save
+    end
+  end
 end
